@@ -1,0 +1,52 @@
+Create a project directory.
+Create package.json file.
+
+Run: npm install electron --save-dev --verbose
+// Sets up the electron version defined in package.json in the current directory.
+
+Create main.js
+// main.js or index.js, as defined in package.json
+
+npm run start
+or
+npm start
+// Runs the app
+
+
+###################################################################################
+
+## main.js sample ##
+const electron = require('electron');
+const { app, BrowserWindow } = electron;
+
+let mainWindow;
+
+app.on('ready', () => {
+    mainWindow = new BrowserWindow({
+        width: 1000,
+        height: 700
+    });
+
+    mainWindow.setTitle('Local');
+    //mainWindow.loadURL('https://cloud.visionway.com/c10118d01/');
+    mainWindow.loadFile('index.html');
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
+});
+
+
+## package.json sample ##
+{
+  "name": "app-hello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {"start":"electron .", "test":"echo \"Error: no test specified\" && exit 1"},
+  "author": "Oliver",
+  "license": "MIT",
+  "devDependencies": {"electron": "23.1.3"}
+}
+
+###################################################################################
